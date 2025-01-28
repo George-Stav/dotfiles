@@ -113,7 +113,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+m exec --no-startup-id "rofi -m -4 -modi drun -show drun"
 bindsym $mod+space exec --no-startup-id "rofi -m -4 -show window"
 bindsym $mod+Shift+s exec "flameshot gui"
-bindsym $mod+b exec "mercury-browser"
+bindsym $mod+b exec "firefox-developer-edition"
 bindsym $mod+c exec "google-chrome-stable"
 bindsym $mod+a exec "$HOME/.local/bin/run"
 bindsym $mod+t exec "$HOME/.local/bin/thunar-goto"

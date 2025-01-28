@@ -258,5 +258,3 @@ PL_FILE="$HOME/.local/share/ytdl/playlists"
 
 # bulk_dl $PL_FILE
 # bulk_albums_split $BACKUP_LOCATION/MUSIC/YT
-
-
