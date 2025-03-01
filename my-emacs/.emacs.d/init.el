@@ -477,7 +477,7 @@
   :commands (consult-theme))
 
 (setq myrc/theme-light 'doom-flatwhite)
-(setq myrc/theme-dark 'wombat)
+(setq myrc/theme-dark 'doom-monokai-ristretto)
 
 ;; wombat
 (load-theme myrc/theme-dark t) ;; t at the end is needed to avoid a warning message
