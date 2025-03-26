@@ -5,7 +5,7 @@ source "$HOME/.config/env.fish"
 set -x MANPAGER "bat -l man --style full"
 set TERM "xterm-256color"
 set -x TEXMFCNF "~/.config:"
-set fish_cursor_insert underscore
+set fish_cursor_insert block
 
 set -x LD_LIBRARY_PATH "$LD_LIBRARY_PATH:/usr/lib/"
 # set -p PATH ~/.cargo/bin

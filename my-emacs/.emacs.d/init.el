@@ -287,7 +287,7 @@
   "b"  '(:ignore t :which-key "buffer")
   ","  '(switch-to-buffer :which-key "switch-to-buffer")
   "<"  '(consult-buffer :which-key "consult-buffer")
-  "bk" '(kill-this-buffer :which-key "kill-this-buffer")
+  "bk" '(kill-current-buffer :which-key "kill-current-buffer")
   "bl" '(evil-switch-to-windows-last-buffer :which-key "last buffer")
   "b]" '(next-buffer :which-key "next-buffer")
   "b[" '(previous-buffer :which-key "previous-buffer")
@@ -705,6 +705,8 @@
   :commands (terraform-mode)
   :custom (terraform-format-on-save t))
 (use-package dart-mode :commands (dart-mode))
+
+(add-to-list 'auto-mode-alist '("\\.sqlx\\'" . sql-mode))
 ;; ============================ ;;
 
 

@@ -11,7 +11,7 @@ chosen="$(echo "$u_chosen" | awk '{print $1}')"
 uuid="$(lsblk -po NAME,UUID | awk -v name="$chosen" '$0 ~ name {print $2}')"
 # [ "$(grep "$uuid" "/etc/fstab")" ] && { udisksctl mount -b "$chosen"; exit 0; }
 
-dirs=$(find /mnt /media /home/ -maxdepth 3 -type d -empty 2> /dev/null)
+dirs=$(find /mnt /media /home/ -maxdepth 2 -type d -empty 2> /dev/null)
 mountpoint=$(echo "$dirs" | fzf --reverse --height=7% --print-query --prompt "Enter mountpoint for $u_chosen > ")
 # --print-query makes it so that the query of the user is printed even if a match was found
 # check number of lines and use second one (i.e. the match) if it exists
