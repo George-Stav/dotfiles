@@ -448,7 +448,8 @@
 	   (doom-modeline-height 12)
 	   (doom-modeline-project-detection 'auto)
 	   (doom-modeline-env-python-executable "python")
-	   (doom-modeline-buffer-file-name-style 'truncate-from-project)))
+	   (doom-modeline-buffer-file-name-style 'truncate-from-project)
+	   (doom-modeline-project-name t)))
 ;; ============================ ;;
 
 
@@ -701,6 +702,8 @@
   :commands (terraform-mode)
   :custom (terraform-format-on-save t))
 (use-package dart-mode :commands (dart-mode))
+
+(add-to-list 'auto-mode-alist '("\\.sqlx\\'" . sql-mode))
 ;; ============================ ;;
 
 

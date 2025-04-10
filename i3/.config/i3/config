@@ -50,8 +50,8 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# bindsym Next focus right
-# bindsym Prior focus left
+bindsym Next focus right
+bindsym Prior focus left
 
 # move focused window; 100 px is only relevant for floating windows
 bindsym $mod+Ctrl+h move left 100 px

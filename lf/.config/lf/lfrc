@@ -9,8 +9,8 @@ set ifs "\n"
 
 cmd open ${{
 	      case "$f" in
-		  *.jpg|*.png|*.gif) sxiv $fx & ;;
-		  *.mkv|*.mp4|*.flac|*.webp|*.webm|*.avi|*.m2ts) mpv --pulse-latency-hacks=yes --no-terminal --sub-files=$(find -maxdepth 2 -regextype posix-extended -regex '.*\.(idx|srt|sub)' -printf '%p:') $fx & ;;
+		  *.jpg|*.png|*.gif|*.jpeg) sxiv $fx & ;;
+		  *.mkv|*.mp4|*.flac|*.webp|*.webm|*.avi|*.m2ts) mpv --script-opt=font_size=50 --pulse-latency-hacks=yes --no-terminal --sub-files=$(find -maxdepth 2 -regextype posix-extended -regex '.*\.(idx|srt|sub)' -printf '%p:') $fx & ;;
 		  *.mp3|*.wav) mpv --no-terminal --force-window=yes $fx & ;;
 		  *.csv|*.xls|*.xlsx|*.gnumeric) gnumeric $f & ;;
 		  *.pdf|*.cbz) zathura "$f" & ;;
@@ -198,6 +198,7 @@ map grs cd ~/repos/scripts/scripts
 map grn cd ~/repos/notes
 map gp cd ~/Packt
 map gh cd /mnt/HDD
+map g8 cd /mnt/HDD8
 map gw cd /mnt/WD
 map gl cd ~/wallpapers
 map g/ cd /
