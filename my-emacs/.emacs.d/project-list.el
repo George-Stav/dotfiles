@@ -1,6 +1,8 @@
 ;;; -*- lisp-data -*-
-(("/home/george/Next/marketing-webanalytics/") ("/home/george/notes/")
- ("/home/george/Next/gcp-dataform-test/") ("/home/george/dotfiles/")
+(("/home/george/dotfiles/")
+ ("/home/george/Next/marketing-webanalytics/")
+ ("/home/george/Next/ariel/ariel/") ("/home/george/notes/")
+ ("/home/george/Next/gcp-dataform-test/")
  ("/home/george/dev/banking-analysis/")
  ("/home/george/dev/vortexa-land-storage-assignment/")
  ("/home/george/dev/cholec_analyzer/")
