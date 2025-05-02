@@ -1,0 +1,90 @@
+#!/bin/bash
+set -euo pipefail
+
+# (m)ovie-to-(tv)
+# Convert mp4 to mkv and embed a subs file to it.
+
+_choose() {
+    prompt=$([[ -z $1 ]] && echo "> " || echo "$1> ")
+    fzf --reverse \
+	--ansi \
+	--min-height=10 --height=10% \
+	--prompt="$prompt" \
+	--cycle -m --marker="*" \
+	--bind 'tab:down' --bind 'btab:up' \
+	--bind 'shift-down:toggle+down' --bind 'shift-up:toggle+up'
+}
+
+_find_movie() {
+    find -maxdepth 1 -name "*.mkv" -o -name "*.mp4"
+}
+
+_find_subs() {
+    find -maxdepth 2 -name "*.srt"
+}
+
+_get() {
+    # sanity check on first variable
+    # should match _find_{$1}
+    [[ $1 != "movie" && $1 != "subs" ]] && { echo "[ERROR]: $1 should match [movie|subs], exiting."; exit -1; }
+
+    choice=$(_find_$1) # WARNING: unsafe function 'polymorphism'
+    # If _find_{movies/subs} only returns a single result the user doesn't have to choose
+    [[ $(echo "$choice" | wc -l) > 1 ]] && choice=$(echo "$choice" | _choose "${1^}") # capitalise first letter
+    [[ -z "$choice" ]] && { echo "[ERROR]: No option chosen, exiting."; exit -1; } # hard fail on no choice
+
+    echo $choice # return choice to caller
+}
+
+_mp4_to_mkv() {
+    echo "[INFO]: Converting from mp4 to mkv..."
+    ffmpeg -v quiet \
+	   -stats \
+	   -i $1 \
+	   -c copy \
+	   $TEMP_MKV
+    echo "[INFO]: Done."
+}
+
+_embed_subs() {
+    movie=$1
+    subs=$2
+    filename=$3
+    echo "[INFO]: Embedding subs to new file..."
+    # all audio and video streams from first input (i.e. movie)
+    # all streams from second input (i.e. subs)
+    ffmpeg -v quiet -stats \
+	   -i $movie -i $subs \
+	   -map 0:a -map 0:v \
+	   -map 1 \
+	   -c copy \
+	   $filename.mkv
+    echo "[INFO]: Produced $DIR/$(basename $filename).mkv"
+}
+
+# global variables
+TEMP_MKV="__temp_output.mkv"
+DIR=$(realpath $1)
+[[ ! -d $DIR ]] && { echo "[ERROR]: $1 is not a real directory, exiting."; exit -1; }
+
+cd $DIR
+
+movie=$(_get movie)
+subs=$(_get subs)
+
+echo -n "Filename (no ext): "
+read -r filename
+[[ -z $filename ]] && filename="${movie%.*}"
+
+if [ "${movie##*.}" = "mp4" ]; then
+    _mp4_to_mkv $movie
+    _embed_subs $TEMP_MKV $subs $filename
+    rm $TEMP_MKV
+else
+    # take care of edgecase where user leaves filename empty
+    # and given movie was already in mkv format
+    [[ "$filename.mkv" = "$(basename $movie)" ]] && filename="$filename-embedded-subs"
+    _embed_subs $movie $subs $filename
+fi
+
+cd - > /dev/null
