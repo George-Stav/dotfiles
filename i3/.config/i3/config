@@ -18,6 +18,7 @@ set $mod Mod1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+focus_wrapping force
 focus_follows_mouse no
 mouse_warping none
 hide_edge_borders smart_no_gaps
@@ -49,6 +50,7 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+bindsym $mod+p focus parent
 
 bindsym Next focus right
 bindsym Prior focus left
@@ -288,3 +290,7 @@ bar {
 #         status_command i3blocks -c ~/.config/i3/i3blocks.conf
 #         # status_command i3blocks -c ~/.config/i3/i3blocks-simple.conf
 # }
+
+
+# 151 -> XF86WakeUp
+# 37 -> Control_L
