@@ -193,7 +193,7 @@ docs() {
 ###~@~@~@ [MAIN] @~@~@~###
 
 CONF="$HOME/.local/share/vpn"
-PROTOCOL="wireguard/ads_trackers_20250416"
+PROTOCOL="wireguard/ads_trackers_20250510"
 # use custom script `colours` to find more colours
 ACCENT="$(tput setaf 12)"
 GREEN="$(tput setaf 10)"

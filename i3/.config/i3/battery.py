@@ -1,8 +1,8 @@
 import os
 import sys
 
-energy_curr = float(os.popen("upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/energy:/{print $2}'").read().strip())
-energy_full = float(os.popen("upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/energy-full:/{print $2}'").read().strip())
+energy_curr = float(os.popen("upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk '/energy:/{print $2}'").read().strip())
+energy_full = float(os.popen("upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk '/energy-full:/{print $2}'").read().strip())
 
 bat=(energy_curr*100/energy_full)
 

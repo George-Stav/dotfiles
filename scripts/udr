@@ -8,4 +8,5 @@ else
 	chosen=$(echo "$drives" | fzf --reverse --height=7% --prompt "Unmount drive > " | awk '{print $1}')
 fi
 [ -z "$chosen" ] && exit 1
-sudo udisksctl unmount -b "$chosen" && notify-send "$chosen was unmounted"
+sudo umount -f "$chosen" && notify-send "$chosen was unmounted"
+# sudo udisksctl unmount -b "$chosen" && notify-send "$chosen was unmounted"

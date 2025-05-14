@@ -20,7 +20,7 @@
 ;; font
 ;; (defun myrc/font () "Fira Code Retina-18")
 ;; (defun myrc/font () "JetBrains Mono-18")
-(defun myrc/font () "Iosevka-15")
+(defun myrc/font () "Iosevka Nerd Font-15")
 (add-to-list 'default-frame-alist `(font . ,(myrc/font)))
 (set-face-attribute 'variable-pitch nil :font (myrc/font) :weight 'regular) ;; required for org-mode
 
@@ -696,7 +696,7 @@
 
 
 ;; ========= PROGRAMMING-MODES ========= ;;
-(use-package rust-mode :hook (rust-mode-hook . (setq indent-tabs-mode nil)))
+(use-package rust-mode)
 (use-package python-mode :commands (python-mode))
   ;; :config
   ;; ((setq eglot-workspace-configuration (:pylsp (:plugins (:jedi_signature_help))))
