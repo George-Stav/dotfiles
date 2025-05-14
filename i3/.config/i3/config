@@ -18,6 +18,7 @@ set $mod Mod1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+focus_wrapping force
 focus_follows_mouse no
 mouse_warping none
 hide_edge_borders smart_no_gaps
@@ -49,6 +50,7 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+bindsym $mod+p focus parent
 
 # bindsym Next focus right
 # bindsym Prior focus left
@@ -144,10 +146,12 @@ bindsym Shift+XF86AudioNext exec "pkill -SIGRTMIN+12 i3blocks"
 bindsym Shift+XF86AudioPrev exec "pkill -SIGRTMIN+12 i3blocks"
 
 # Brightness
-bindsym XF86MonBrightnessUp exec "brightnessctl set +5%"
 bindsym XF86MonBrightnessDown exec "brightnessctl set 5%-"
+bindsym XF86MonBrightnessUp exec "brightnessctl set +5%"
 
+# Scripts
 bindsym $mod+Ctrl+space exec "$HOME/.local/bin/cycle-kb-layout"
+bindsym $mod+v exec "$HOME/.local/bin/vpn toggle && pkill -SIGRTMIN+11 i3blocks"
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -197,8 +201,9 @@ for_window [window_role="Emacs"] layout tabbed
 for_window [class="Thunar"] floating enable
 for_window [class="genp"] floating enable
 for_window [class="pentablet"] floating enable
-for_window [class="pavucontrol"] floating enable
+for_window [class="Pavucontrol"] floating enable
 for_window [title=".*QEMU/KVM"] floating enable
+for_window [title="Steam Settings"] floating enable
 for_window [class="anki"] floating enable
 for_window [class="Emulator"] floating enable
 
@@ -207,8 +212,8 @@ for_window [class="Alacritty_floating|Galculator"] floating enable
 for_window [class="Alacritty_floating|Galculator"] move container to output next
 for_window [class="Alacritty_floating|Galculator"] sticky enable
 
-bindsym $mod+Ctrl+Escape mode "no_bindings"
-mode "no_bindings" {
+bindsym $mod+Ctrl+Escape mode "no_bindings (exit: Ctrl+Esc)"
+mode "no_bindings (exit: Ctrl+Esc)" {
     # back to normal: Ctrl+Escape
     bindsym Ctrl+Escape mode "default"
 }
