@@ -197,8 +197,10 @@ map grc cd ~/repos/cv
 map grs cd ~/repos/scripts/scripts
 map grn cd ~/repos/notes
 map gp cd ~/Packt
+map gb cd ~/BULK
 map gh cd /mnt/HDD
 map gw cd /mnt/WD
+map gm cd /mnt/Maxtor
 map gl cd ~/wallpapers
 map g/ cd /
 map g~ cd ~

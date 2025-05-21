@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -eo pipefail
 
 # (m)ovie-to-(tv)
 # Convert mp4 to mkv and embed a subs file to it.
@@ -40,7 +40,7 @@ _mp4_to_mkv() {
     echo "[INFO]: Converting from mp4 to mkv..."
     ffmpeg -v quiet \
 	   -stats \
-	   -i $1 \
+	   -i "$1" \
 	   -c copy \
 	   $TEMP_MKV
     echo "[INFO]: Done."
@@ -54,37 +54,45 @@ _embed_subs() {
     # all audio and video streams from first input (i.e. movie)
     # all streams from second input (i.e. subs)
     ffmpeg -v quiet -stats \
-	   -i $movie -i $subs \
+	   -i "$movie" -i "$subs" \
 	   -map 0:a -map 0:v \
 	   -map 1 \
 	   -c copy \
-	   $filename.mkv
-    echo "[INFO]: Produced $DIR/$(basename $filename).mkv"
+	   "$DEST/$filename.mkv"
+    echo "[INFO]: Produced $DEST/$filename.mkv"
 }
 
 # global variables
 TEMP_MKV="__temp_output.mkv"
+
+[[ -z "$1" ]] && { echo "[ERROR]: First parameter must be a directory, exiting."; exit -1; }
 DIR=$(realpath $1)
 [[ ! -d $DIR ]] && { echo "[ERROR]: $1 is not a real directory, exiting."; exit -1; }
+
+[[ -z "$2" ]] && DEST=$DIR || DEST=$(realpath $2)
+[[ ! -d $DEST ]] && mkdir -vp $DEST
 
 cd $DIR
 
 movie=$(_get movie)
 subs=$(_get subs)
 
-echo -n "Filename (no ext): "
+default="$(basename ${DIR,,})" # lowercase $DIR and extract basename
+default="${default/_/-}"
+
+echo -n "Filename (no ext) [$default.mkv]: "
 read -r filename
-[[ -z $filename ]] && filename="${movie%.*}"
+[[ -z $filename ]] && filename="$default"
 
 if [ "${movie##*.}" = "mp4" ]; then
-    _mp4_to_mkv $movie
-    _embed_subs $TEMP_MKV $subs $filename
+    _mp4_to_mkv "$movie"
+    _embed_subs $TEMP_MKV "$subs" "$filename"
     rm $TEMP_MKV
 else
     # take care of edgecase where user leaves filename empty
     # and given movie was already in mkv format
     [[ "$filename.mkv" = "$(basename $movie)" ]] && filename="$filename-embedded-subs"
-    _embed_subs $movie $subs $filename
+    _embed_subs "$movie" "$subs" $filename
 fi
 
 cd - > /dev/null

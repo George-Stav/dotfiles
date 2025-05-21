@@ -8,7 +8,7 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/Next/google-cloud-sdk
 
 #~~~ -{DEFAULT APPLICATIONS}- ~~~#
 export EMACS_DAEMONS="personal work default"
-export BROWSER="firefox-developer-edition"
+export BROWSER="zen-browser"
 export TERMINAL="alacritty"
 export EDITOR="vim"
 export FONT_NAME="Jetbrains Mono"

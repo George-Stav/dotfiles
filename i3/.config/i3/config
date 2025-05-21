@@ -116,7 +116,7 @@ bindsym $mod+m exec --no-startup-id "rofi -m -4 -modi drun -show drun"
 bindsym $mod+space exec --no-startup-id "rofi -m -4 -show window"
 bindsym $mod+Shift+s exec "flameshot gui"
 bindsym Print exec "flameshot gui"
-bindsym $mod+b exec "firefox-developer-edition"
+bindsym $mod+b exec "zen-browser"
 bindsym $mod+c exec "google-chrome-stable"
 bindsym $mod+a exec "$HOME/.local/bin/run"
 bindsym $mod+t exec "$HOME/.local/bin/thunar-goto"
@@ -133,7 +133,6 @@ bindsym Shift+XF86AudioRaiseVolume exec "$HOME/.local/bin/change-volume +10%"
 bindsym XF86AudioMute exec "$HOME/.local/bin/change-volume 0"
 bindsym Shift+XF86AudioMute exec "$HOME/.local/bin/mic-toggle && pkill -SIGRTMIN+10 i3blocks"
 bindsym XF86AudioMicMute exec "$HOME/.local/bin/mic-toggle && pkill -SIGRTMIN+10 i3blocks"
-bindsym $mod+v exec "$HOME/.local/bin/vpn toggle && pkill -SIGRTMIN+11 i3blocks"
 
 # Player
 bindsym XF86AudioPlay exec "playerctl play-pause && $HOME/.local/bin/media-notif"
@@ -154,14 +153,13 @@ bindsym $mod+Ctrl+space exec "$HOME/.local/bin/cycle-kb-layout"
 bindsym $mod+v exec "$HOME/.local/bin/vpn toggle && pkill -SIGRTMIN+11 i3blocks"
 
 # reload the configuration file
-bindsym $mod+Ctrl+c reload
-bindsym $mod+Ctrl+r restart
+bindsym $mod+Ctrl+r reload
+bindsym $mod+Ctrl+Shift+r restart
 bindsym $mod+Ctrl+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # bindsym $mod+Ctrl+q exit
 
 bindsym $mod+Ctrl+Shift+s exec "systemctl suspend"
 bindsym $mod+Ctrl+Shift+h exec "systemctl hibernate"
-bindsym $mod+Ctrl+Shift+r exec "$HOME/.local/bin/em p state && reboot"
 bindsym $mod+Ctrl+Shift+u exec "$HOME/.local/bin/em p state && shutdown now"
 
 # px for floating | ppt for tiled
@@ -201,7 +199,7 @@ for_window [window_role="Emacs"] layout tabbed
 for_window [class="Thunar"] floating enable
 for_window [class="genp"] floating enable
 for_window [class="pentablet"] floating enable
-for_window [class="Pavucontrol"] floating enable
+for_window [class="pavucontrol"] floating enable
 for_window [title=".*QEMU/KVM"] floating enable
 for_window [title="Steam Settings"] floating enable
 for_window [class="anki"] floating enable

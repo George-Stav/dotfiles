@@ -1,0 +1,6 @@
+#!/bin/bash
+
+printf "[INFO]: rsync -av --ignore-existing --progress -- ${@:2} $1/\n"
+rsync -av --ignore-existing --progress -- "${@:2}" "$1/"
+printf "\nPress Enter to exit..."
+read
