@@ -480,6 +480,7 @@
 (setq myrc/theme-dark 'doom-monokai-ristretto)
 
 ;; wombat
+;; tsdh-light is a good one
 (load-theme myrc/theme-dark t) ;; t at the end is needed to avoid a warning message
 ;; ============================ ;;
 

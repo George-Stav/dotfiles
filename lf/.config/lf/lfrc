@@ -161,6 +161,7 @@ map *m glob-select *.mkv
 map *4 glob-select *.mp4
 map *j glob-select *.jpg
 map *p glob-select *.png
+map *z glob-select *.zip
 
 # Rename
 map rr rename
