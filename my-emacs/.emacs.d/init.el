@@ -14,12 +14,13 @@
 (size-indication-mode 1) ;; show file size in modeline
 (winner-mode 1) ;; enable window-undo/redo
 (toggle-word-wrap 1)
+;; (global-auto-revert-mode 1)
 ;; (global-visual-line-mode 1)
 
 ;; font
 ;; (defun myrc/font () "Fira Code Retina-18")
 ;; (defun myrc/font () "JetBrains Mono-18")
-(defun myrc/font () "Iosevka-15")
+(defun myrc/font () "Iosevka Nerd Font-15")
 (add-to-list 'default-frame-alist `(font . ,(myrc/font)))
 (set-face-attribute 'variable-pitch nil :font (myrc/font) :weight 'regular) ;; required for org-mode
 
@@ -96,6 +97,9 @@
 
 ;; Force ediff to run in same frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; Suppress native-compiler warnings
+(add-to-list 'warning-suppress-types '(native-compiler))
 ;; ============================ ;;
 
 
@@ -323,9 +327,10 @@
 
   ;; INFERIOR PROCESSES
   "i"  '(:ignore t :which-key "inferior processes")
-  "ip" '(run-python :which-key "python interpreter")
   "ie" '(eshell :which-key "eshell")
   "it" '(term :which-key "term")
+  "ip" '(run-python :which-key "python interpreter")
+  "ii" '((lambda () (interactive) (run-python "ipython -i --simple-prompt --InteractiveShell.display_page=True" nil t)) :which-key "ipython")
 
   ;; EVAL & EGLOT
   "e"  '(:ignore t :which-key "eval")
@@ -477,6 +482,7 @@
 (setq myrc/theme-dark 'doom-monokai-ristretto)
 
 ;; wombat
+;; tsdh-light is a good one
 (load-theme myrc/theme-dark t) ;; t at the end is needed to avoid a warning message
 ;; ============================ ;;
 
@@ -693,10 +699,18 @@
 
 
 ;; ========= PROGRAMMING-MODES ========= ;;
-(use-package rust-mode :hook (rust-mode-hook . (setq indent-tabs-mode nil)))
+(use-package rust-mode)
 (use-package python-mode :commands (python-mode))
   ;; :config
   ;; ((setq eglot-workspace-configuration (:pylsp (:plugins (:jedi_signature_help))))
+
+;; scroll to bottom on output for ipython mode
+(add-hook 'inferior-python-mode-hook
+	  (lambda ()
+	    (add-to-list 'comint-output-filter-functions 'comint-postoutput-scroll-to-bottom)))
+
+(use-package ipython-shell-send)
+(use-package pyvenv :commands (pyvenv-workon))
 (use-package yaml-mode :commands (yaml-mode))
 (use-package terraform-mode
   :commands (terraform-mode)

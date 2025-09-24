@@ -6,3 +6,4 @@ my-emacs/.emacs.d/recentf
 my-emacs/.emacs.d/eln-cache
 vpn/.local/share/vpn/wireguard/**
 vpn/.local/share/vpn/openvpn/**
+icons/

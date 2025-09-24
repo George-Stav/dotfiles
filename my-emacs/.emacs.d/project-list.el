@@ -1,8 +1,7 @@
 ;;; -*- lisp-data -*-
-(("/home/neeto/dotfiles/")
+(("/home/neeto/dotfiles/") ("/home/neeto/dev/wundernn/")
  ("/home/neeto/Next/marketing_webanalytics/") ("/home/neeto/notes/")
- ("/home/neeto/dev/rust/spotiver/") ("/home/neeto/cv/")
- ("/home/neeto/Next/marketing-webanalytics/")
+ ("/home/neeto/cv/") ("/home/neeto/Next/marketing-webanalytics/")
  ("/home/neeto/Next/gcp-dataform-test/")
  ("/home/neeto/Next/ariel/ariel/")
  ("/home/neeto/Next/marketingdata_platform/")

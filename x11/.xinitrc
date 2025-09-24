@@ -6,11 +6,11 @@ xset s off -dpms # turn of [s]creen-saver control and Energy Star (DPMS) feature
 eval "$SCRIPTS/xconf reload" &	# reload xrandr configuration
 eval "$SCRIPTS/em startup" &  	# emacs servers
 				# compositor for transparency
-picom -b --config ~/.config/picom/$(hostname).conf
+picom -b --config ~/.config/picom/$HOSTNAME.conf
 # nm-applet &			# nmcli widget
 flameshot &			# screenshot software
 qbittorrent &
-transmission-daemon &
+# transmission-daemon &
 dunst &				# notification daemon
 /usr/bin/easystroke &           # mouse gestures on browser
 nitrogen --restore &		# wallpaper

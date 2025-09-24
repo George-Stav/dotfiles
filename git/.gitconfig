@@ -5,3 +5,5 @@
 	user = George-Stav
 [init]
 	defaultBranch = main
+[fetch]
+	prune = true

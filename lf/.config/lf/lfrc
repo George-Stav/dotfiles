@@ -14,6 +14,7 @@ cmd open ${{
 		  *.mp3|*.wav) mpv --no-terminal --force-window=yes $fx & ;;
 		  *.csv|*.xls|*.xlsx|*.gnumeric) gnumeric $f & ;;
 		  *.pdf|*.cbz) zathura "$f" & ;;
+		  *.epub|*.mobi|*.fb2) FBReader "$f" & ;;
 		  *) $VISUAL "$f" & ;;
 	      esac
 	  }}
@@ -204,3 +205,4 @@ map gl cd ~/wallpapers
 map g/ cd /
 map g~ cd ~
 map gd cd ~/Downloads
+map gv cd ~/Videos

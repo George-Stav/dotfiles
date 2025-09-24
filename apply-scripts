@@ -1,5 +1,6 @@
 #!/bin/sh
 
+source ~/.config/env.sh
 symlinks="$SCRIPTS"
 sdir="$HOME/dotfiles"
 find "$sdir/scripts/" -type f | while read -r s; do
