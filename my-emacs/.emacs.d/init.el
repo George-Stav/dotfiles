@@ -100,6 +100,9 @@
 
 ;; Force ediff to run in same frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; Suppress native-compiler warnings
+(add-to-list 'warning-suppress-types '(native-compiler))
 ;; ============================ ;;
 
 
@@ -327,9 +330,10 @@
 
   ;; INFERIOR PROCESSES
   "i"  '(:ignore t :which-key "inferior processes")
-  "ip" '(run-python :which-key "python interpreter")
   "ie" '(eshell :which-key "eshell")
   "it" '(term :which-key "term")
+  "ip" '(run-python :which-key "python interpreter")
+  "ii" '((lambda () (interactive) (run-python "ipython -i --simple-prompt --InteractiveShell.display_page=True" nil t)) :which-key "ipython")
 
   ;; EVAL & EGLOT
   "e"  '(:ignore t :which-key "eval")
@@ -452,7 +456,8 @@
 	   (doom-modeline-height 12)
 	   (doom-modeline-project-detection 'auto)
 	   (doom-modeline-env-python-executable "python")
-	   (doom-modeline-buffer-file-name-style 'truncate-from-project)))
+	   (doom-modeline-buffer-file-name-style 'truncate-from-project)
+	   (doom-modeline-project-name t)))
 ;; ============================ ;;
 
 
@@ -701,6 +706,14 @@
 (use-package python-mode :commands (python-mode))
   ;; :config
   ;; ((setq eglot-workspace-configuration (:pylsp (:plugins (:jedi_signature_help))))
+
+;; scroll to bottom on output for ipython mode
+(add-hook 'inferior-python-mode-hook
+	  (lambda ()
+	    (add-to-list 'comint-output-filter-functions 'comint-postoutput-scroll-to-bottom)))
+
+(use-package ipython-shell-send)
+(use-package pyvenv :commands (pyvenv-workon))
 (use-package yaml-mode :commands (yaml-mode))
 (use-package terraform-mode
   :commands (terraform-mode)

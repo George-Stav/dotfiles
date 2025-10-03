@@ -1,8 +1,8 @@
 ;;; -*- lisp-data -*-
-(("/home/george/dotfiles/") ("/home/george/Next/mwa_airflow/")
+(("/home/george/dotfiles/") ("/home/george/dev/rust/spotiver/")
+ ("/home/george/notes/") ("/home/george/Next/mwa_airflow/")
  ("/home/george/Next/marketing_webanalytics/")
  ("/home/george/Next/marketingdata_platform/")
- ("/home/george/dev/rust/spotiver/") ("/home/george/notes/")
  ("/home/george/Next/ariel/ariel/") ("/home/george/Next/vigenair/")
  ("/home/george/Next/firebasereiss-dmk-azure-dev/")
  ("/home/george/cv/") ("/home/george/Next/marketing-webanalytics/")

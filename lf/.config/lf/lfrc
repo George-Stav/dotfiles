@@ -14,7 +14,7 @@ cmd open ${{
 		  *.mp3|*.wav) mpv --no-terminal --force-window=yes $fx & ;;
 		  *.csv|*.xls|*.xlsx|*.gnumeric) gnumeric $f & ;;
 		  *.pdf|*.PDF|*.cbz) zathura "$f" & ;;
-		  *) $VISUAL "$f" & ;;
+		  *) $VISUAL t "$f" ;;
 	      esac
 	  }}
 
@@ -188,7 +188,8 @@ map D delete
 map dD delete
 map sD $sudo rm -r "$f"
 map <enter> open
-map e $$VISUAL "$f" &
+# map e $$VISUAL t "$f"
+map e $$VISUAL n "$f" &
 
 # Shortcuts
 map gc cd ~/.config
