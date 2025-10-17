@@ -1,5 +1,9 @@
 ;;; -*- lisp-data -*-
-(("/home/neeto/dotfiles/") ("/home/neeto/dev/wundernn/")
+(("/home/neeto/dev/pakas-capital/") ("/home/neeto/dotfiles/")
+ ("/home/neeto/dev/spotiver/")
+ ("/home/neeto/dev/pakas-capital/py-clob-client/")
+ ("/home/neeto/dev/polymarket/py-clob-client/")
+ ("/home/neeto/dev/wundernn/")
  ("/home/neeto/Next/marketing_webanalytics/") ("/home/neeto/notes/")
  ("/home/neeto/cv/") ("/home/neeto/Next/marketing-webanalytics/")
  ("/home/neeto/Next/gcp-dataform-test/")

@@ -126,6 +126,18 @@ function copy
     end
 end
 
+function pyvenv
+	set DIR "$HOME/.virtualenvs"
+
+	read -P "env>" env
+
+	python -m venv $DIR/$env
+	printf "Created python virtual env \"%s/%s\".\n" $DIR $env
+
+	$DIR/$env/bin/pip install --upgrade pip
+	$DIR/$env/bin/pip install "python-lsp-server[all]"
+end
+
 function activate
 	set DIR "$HOME/.virtualenvs"
 	set ACCENT "$(tput setaf 3)"

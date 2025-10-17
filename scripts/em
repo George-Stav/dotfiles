@@ -30,10 +30,10 @@ purge() {
 }
 
 new() {
-    # List custom workspaces instead of just EMACS_DAEMONS
-    TMP_FILE="/tmp/em.daemons"
-    echo $EMACS_DAEMONS | sed 's/ /\n/g' > $TMP_FILE
-    ps -x | grep "emacs --daemon" | awk -F '=' 'NR>1 {print last} {last=$2}' >> $TMP_FILE
+    OBJECT="$1"
+    echo $EMACS_DAEMONS | sed 's/ /\n/g' > $TMP_FILE						# default EMACS_DAEMONS
+    ps -x | grep "emacs --daemon" | awk -F '=' 'NR>1 {print last} {last=$2}' >> $TMP_FILE	# custom daemon that is currently running
+    find $DESKTOP_DIR -type f -exec basename {} \; | sed 's/\..*$//g' >> $TMP_FILE		# custom daemons that have been saved as a desktop in the past
     SOCKNAME="$(cat $TMP_FILE | sort | uniq | rofi -m -4 -dmenu -p "Workspace")"
 
     if [ -n "$SOCKNAME" ]; then
@@ -41,7 +41,7 @@ new() {
 	if [ "$(ps -x | grep "emacs --daemon=$SOCKNAME" | wc -l)" = 1 ]; then
 	    emacs --daemon="$SOCKNAME"
 	fi
-	emacsclient -c -socket-name="$SOCKNAME"
+	emacsclient -r -socket-name="$SOCKNAME" $OBJECT
     fi
 }
 
@@ -50,11 +50,13 @@ new() {
 # When $3 is set to "state" the state of emacs desktops is saved
 source "$HOME/.config/env.sh"
 SERVICE="emacs.service"
+TMP_FILE="/tmp/em.daemons"
+DESKTOP_DIR="$HOME/.cache/emacs/var/desktop"
 case "$1" in
     s | startup) startup "$2" ;;
     p | purge  ) purge "$2" ;;
     r | reboot ) reboot "$2" ;;
-    n | new) new ;;
+    n | new) new "$2" ;;
     t | tty) emacsclient -s default -tty "$2" ;;
     *) emacsclient -s default -r "$1" ;;
 esac

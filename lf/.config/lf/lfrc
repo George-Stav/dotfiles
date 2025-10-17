@@ -13,9 +13,9 @@ cmd open ${{
 		  *.mkv|*.mp4|*.flac|*.webp|*.webm|*.avi|*.m2ts) mpv --script-opt=font_size=50 --pulse-latency-hacks=yes --no-terminal --sub-files=$(find -maxdepth 2 -regextype posix-extended -regex '.*\.(idx|srt|sub)' -printf '%p:') $fx & ;;
 		  *.mp3|*.wav) mpv --no-terminal --force-window=yes $fx & ;;
 		  *.csv|*.xls|*.xlsx|*.gnumeric) gnumeric $f & ;;
-		  *.pdf|*.cbz) zathura "$f" & ;;
+		  *.pdf|*.cbz|*.PDF) zathura "$f" & ;;
 		  *.epub|*.mobi|*.fb2) FBReader "$f" & ;;
-		  *) $VISUAL "$f" & ;;
+		  *) $VISUAL t "$f" ;;
 	      esac
 	  }}
 
@@ -162,6 +162,7 @@ map *m glob-select *.mkv
 map *4 glob-select *.mp4
 map *j glob-select *.jpg
 map *p glob-select *.png
+map *z glob-select *.zip
 
 # Rename
 map rr rename
@@ -188,7 +189,8 @@ map D delete
 map dD delete
 map sD $sudo rm -r "$f"
 map <enter> open
-map e $$VISUAL "$f" &
+# map e $$VISUAL t "$f"
+map e $$VISUAL n "$f" &
 
 # Shortcuts
 map gc cd ~/.config
@@ -201,6 +203,7 @@ map gp cd ~/Packt
 map gh cd /mnt/HDD
 map g8 cd /mnt/HDD8
 map gw cd /mnt/WD
+map gm cd /mnt/Maxtor
 map gl cd ~/wallpapers
 map g/ cd /
 map g~ cd ~
