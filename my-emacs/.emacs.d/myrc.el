@@ -226,9 +226,12 @@ small ones that are easier to understand and debug."
     (add-hook 'eglot-managed-mode-hook
 	      (lambda ()
 		(progn
-		  (remove-hook
-		   'flymake-diagnostic-functions 'eglot-flymake-backend)
-		  (eglot-inlay-hints-mode -1))))))
+		  ;; (remove-hook 'flymake-diagnostic-functions 'eglot-flymake-backend)
+		  (eglot-inlay-hints-mode -1)
+		  (flymake-mode -1)
+		  (setq eldoc-documentation-strategy
+			'eldoc-documentation-compose-eagerly))))))
+
 
 (defun myrc/save-temp-buffers ()
   "Save all modified buffers not visiting a file to predefined paths without prompting."

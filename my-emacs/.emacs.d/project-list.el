@@ -1,6 +1,7 @@
 ;;; -*- lisp-data -*-
-(("/home/george/dotfiles/") ("/home/george/dev/rust/spotiver/")
- ("/home/george/notes/") ("/home/george/Next/mwa_airflow/")
+(("/home/george/dev/pakas-capital/") ("/home/george/dotfiles/")
+ ("/home/george/dev/rust/spotiver/") ("/home/george/notes/")
+ ("/home/george/Next/mwa_airflow/")
  ("/home/george/Next/marketing_webanalytics/")
  ("/home/george/Next/marketingdata_platform/")
  ("/home/george/Next/ariel/ariel/") ("/home/george/Next/vigenair/")

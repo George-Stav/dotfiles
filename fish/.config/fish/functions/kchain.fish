@@ -1,6 +1,6 @@
 function kchain
     export SHELL=fish
-    set key (eza --color=never --oneline --icons=never --ignore-glob="*.pub|known_hosts*|environment" "$HOME/.ssh" | fzf \
+    set key (eza --color=never --oneline --icons=never --only-files --ignore-glob="*.pub|known_hosts*|environment" "$HOME/.ssh" | fzf \
 	--reverse \
 	--ansi \
 	--min-height=7 --height=7%)

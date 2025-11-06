@@ -2,6 +2,7 @@
 (load "~/.emacs.d/myrc.el")
 (setq custom-file "~/.emacs.custom.el")
 
+
 ;; clean
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -26,9 +27,6 @@
 
 ;; remove startup message
 (setq inhibit-startup-message t)
- 
-;; disable beeping on laptop
-(setq ring-bell-function #'ignore)
 
 ;; cleaner ~/.emacs.d
 ;; moving these lines runs the risk of re-downloading all packages from scratch
@@ -258,9 +256,12 @@
   "fs" '(save-buffer :which-key "save file")
   "fr" '(consult-recent-file :which-key "recent file")
   "."  '(find-file :which-key "find-file")
+
   "ff" '((lambda () (interactive) (consult-find "~")) :which-key "fuzzy find")
   "fy" '((lambda () (interactive) (myrc/yank-file-name nil)) :which-key "yank file name")
   "fY" '((lambda () (interactive) (myrc/yank-file-name t)) :which-key "yank file name")
+
+  "fb" '(consult-flymake :which-key "flymake buffer diagnostics")
 
   ;; SUDO/SSH
   "s"  '(:ignore t :which-key "sudo")
@@ -336,11 +337,13 @@
   "ii" '((lambda () (interactive) (run-python "ipython -i --simple-prompt --InteractiveShell.display_page=True" nil t)) :which-key "ipython")
 
   ;; EVAL & EGLOT
-  "e"  '(:ignore t :which-key "eval")
+  "e"  '(:ignore t :which-key "eval+eglot")
   "eb" '(eval-buffer :which-key "eval-buffer")
   "ee" '(eval-expression :which-key "eval-expression")
   "es" '(eval-last-sexp :which-key "eval-last-sexp")
+
   "eg" '(myrc/start-eglot :which-key "start eglot server")
+  "ef" '(flymake-mode :whick-key "flymake mode")
 
   ;; MISC
   "x"  '(evil-buffer-new :which-key "temp buffer")
@@ -391,8 +394,7 @@
 
 (use-package consult
   :defer t
-  :bind (("C-f" . consult-line)
-	 ("C-M-l" . consult-imenu))
+  :bind (("C-M-l" . consult-imenu))
   ;; :map minibuffer-local-map
   ;; ("C-r" . consult-hitory))
   :custom
@@ -422,7 +424,8 @@
 (use-package company
   :init (global-company-mode)
   :custom ((company-selection-wrap-around t)
-	   (company-idle-delay nil))
+	   (company-idle-delay 0.1)
+	   (company-tooltip-offset-display 'lines))
   :bind (:map evil-insert-state-map
 	      ("C-<tab>" . company-complete)))
 
@@ -674,19 +677,13 @@
 
 
 ;; ========= LANGUAGE-SERVER (EGLOT, ELDOC) ========= ;;
-(use-package eglot
+(use-package eglot)
   ;; :ensure nil
-  :custom ((eglot-ignored-server-capabilities '(:documentHighlightProvider
-						:inlayHintProvider))))
-
-(add-hook 'eglot-managed-mode-hook
-	  (lambda ()
-	    (progn
-	      (setq eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly)
-	      (flymake-mode-off))))
+  ;; :custom ((eglot-ignored-server-capabilities '(:documentHighlightProvider
+  ;; 						:inlayHintProvider))))
 
 (use-package eldoc
-  :ensure nil
+  ;; :ensure nil
   :custom (eldoc-idle-delay 1000000000)
   :bind
   ;; rebinds command pointed to by keybind: 'K'
@@ -736,9 +733,9 @@
 	      ("C-n" . iedit-expand-down-to-occurrence)
 	      ("C-p" . iedit-expand-up-to-occurrence)
 	      ("C-r" . iedit-restrict-function)
-	      ("C-l" . iedit-restrict-current-line))
-  :config
-  (add-hook 'iedit-mode-hook #'iedit-restrict-current-line))
+	      ("C-l" . iedit-restrict-current-line)))
+;;   :config
+;;   (add-hook 'iedit-mode-hook #'iedit-restrict-current-line))
 ;; :map evil-normal-state-map ;; needed so that when attempting to enter normal mode from insert mode it doesn't exit altogether
 ;; ("<escape>" . iedit--quit)))
 ;; ============================ ;;
