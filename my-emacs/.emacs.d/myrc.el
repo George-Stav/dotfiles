@@ -14,7 +14,7 @@ If `evil-split-window-below' is non-nil, the new window isn't focused."
 
 (defun myrc/get-project-root ()
   (when (fboundp 'projectile-project-root)
-    (projectile-porject-root)))
+    (projectile-project-root)))
 
 (defun myrc/project-reset-compilation-path ()
   (interactive)
@@ -42,17 +42,13 @@ Set the environment variables `SSH_AUTH_SOCK', `SSH_AGENT_PID'
 and `GPG_AGENT' in Emacs' `process-environment' according to
 information retrieved from files created by the keychain script."
   (interactive)
-  (let* ((ssh (shell-command-to-string "keychain -q --noask --agents ssh --eval"))
-	 (gpg (shell-command-to-string "keychain -q --noask --agents gpg --eval")))
+  (let* ((ssh (shell-command-to-string "keychain -q --noask --eval")))
     (list (and ssh
 	       (string-match "SSH_AUTH_SOCK[=\s]\\([^\s;\n]*\\)" ssh)
 	       (setenv       "SSH_AUTH_SOCK" (match-string 1 ssh)))
 	  (and ssh
 	       (string-match "SSH_AGENT_PID[=\s]\\([0-9]*\\)?" ssh)
-	       (setenv       "SSH_AGENT_PID" (match-string 1 ssh)))
-	  (and gpg
-	       (string-match "GPG_AGENT_INFO[=\s]\\([^\s;\n]*\\)" gpg)
-	       (setenv       "GPG_AGENT_INFO" (match-string 1 gpg))))))
+	       (setenv       "SSH_AGENT_PID" (match-string 1 ssh))))))
 
 (defun myrc/git-project-finder (dir)
   "Integrate .git project roots."
@@ -232,6 +228,15 @@ small ones that are easier to understand and debug."
 		  (setq eldoc-documentation-strategy
 			'eldoc-documentation-compose-eagerly))))))
 
+(defun myrc/toggle-flymake-diagnostics-in-buffer ()
+  "Toggle annoying flymake diagnostics on eglot buffers."
+  (if (bound-and-true-p flymake-mode)
+      (progn
+	(setq flymake-start-on-save-buffer t)
+	(setq flymake-no-changes-timeout 0.5))
+    (progn
+	(setq flymake-start-on-save-buffer nil)
+	(setq flymake-no-changes-timeout nil))))
 
 (defun myrc/save-temp-buffers ()
   "Save all modified buffers not visiting a file to predefined paths without prompting."
