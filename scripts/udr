@@ -1,6 +1,6 @@
 #!/bin/sh
 
-drives=$(lsblk -lp | grep "t /" | grep -ve "nvme" | awk '{print $1, "(" $4 ")", "on", $7'})
+drives=$(lsblk -lp | grep "t /" | grep -ve "nvme" | awk '{print $1, "(" $4 ")", "on", $7}')
 [ -z "$drives" ] && { printf "%s\n" "No drives found to unmount, exiting..."; exit 1; }
 if [ $(echo "$drives" | wc -l) = 1 ]; then
 	chosen=$(echo "$drives" | awk '{print $1}')
@@ -8,4 +8,4 @@ else
 	chosen=$(echo "$drives" | fzf --reverse --height=7% --prompt "Unmount drive > " | awk '{print $1}')
 fi
 [ -z "$chosen" ] && exit 1
-sudo udisksctl unmount -b "$chosen" && notify-send "$chosen was unmounted"
+sudo udisksctl unmount -f -b "$chosen" && notify-send "$chosen was unmounted"

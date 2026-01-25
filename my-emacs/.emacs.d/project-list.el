@@ -1,5 +1,5 @@
 ;;; -*- lisp-data -*-
-(("/home/neeto/dev/aoc25/") ("/home/neeto/dotfiles/")
+(("/home/neeto/dotfiles/") ("/home/neeto/dev/aoc25/")
  ("/home/neeto/notes/") ("/home/neeto/dev/pakas-capital/")
  ("/home/neeto/dev/spotiver/")
  ("/home/neeto/dev/pakas-capital/py-clob-client/")

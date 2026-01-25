@@ -1,9 +1,15 @@
 #!/bin/sh
 
-if [ -n "$(pacmd list-sinks | grep 'Navi')" ]; then
-    NAVI_CARD=$(pacmd list-cards | grep -B 15 'product.name = "Navi' | awk 'NR==1 {print $2}')
-    pacmd set-card-profile $NAVI_CARD off
+SPEAKERS_ID="pebble"
+HEADPHONES_ID="hyperx"
+
+if [ -z $(pactl get-default-sink | grep -i $HEADPHONES_ID) ]; then
+    sink=$(pacmd list-sinks | grep -m 1 -B 1 -i $HEADPHONES_ID)
+    new_sink="Headphones"
+else
+    sink=$(pacmd list-sinks | grep -m 1 -B 1 -i $SPEAKERS_ID)
+    new_sink="Speakers"
 fi
 
-pacmd set-default-sink $(pacmd list-sinks | sed -En 's/^ +index: ([0-9]+).*/\1/p')
-[ -z $(pactl get-default-sink | grep "HyperX") ] && echo "Speakers" || echo "Headphones"
+pacmd set-default-sink $(echo "$sink" | sed -En 's/^ +index: ([0-9]+).*/\1/p')
+echo $new_sink
