@@ -42,17 +42,13 @@ Set the environment variables `SSH_AUTH_SOCK', `SSH_AGENT_PID'
 and `GPG_AGENT' in Emacs' `process-environment' according to
 information retrieved from files created by the keychain script."
   (interactive)
-  (let* ((ssh (shell-command-to-string "keychain -q --noask --agents ssh --eval"))
-	 (gpg (shell-command-to-string "keychain -q --noask --agents gpg --eval")))
+  (let* ((ssh (shell-command-to-string "keychain -q --noask --eval")))
     (list (and ssh
 	       (string-match "SSH_AUTH_SOCK[=\s]\\([^\s;\n]*\\)" ssh)
 	       (setenv       "SSH_AUTH_SOCK" (match-string 1 ssh)))
 	  (and ssh
 	       (string-match "SSH_AGENT_PID[=\s]\\([0-9]*\\)?" ssh)
-	       (setenv       "SSH_AGENT_PID" (match-string 1 ssh)))
-	  (and gpg
-	       (string-match "GPG_AGENT_INFO[=\s]\\([^\s;\n]*\\)" gpg)
-	       (setenv       "GPG_AGENT_INFO" (match-string 1 gpg))))))
+	       (setenv       "SSH_AGENT_PID" (match-string 1 ssh))))))
 
 (defun myrc/git-project-finder (dir)
   "Integrate .git project roots."
@@ -226,7 +222,7 @@ small ones that are easier to understand and debug."
     (add-hook 'eglot-managed-mode-hook
 	      (lambda ()
 		(progn
-		  ;; (remove-hook 'flymake-diagnostic-functions 'eglot-flymake-backend)
+		  (remove-hook 'flymake-diagnostic-functions 'eglot-flymake-backend)
 		  (eglot-inlay-hints-mode -1)
 		  (flymake-mode -1)
 		  (setq eldoc-documentation-strategy

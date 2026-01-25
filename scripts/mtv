@@ -38,7 +38,7 @@ _get() {
 
 _mp4_to_mkv() {
     echo "[INFO]: Converting from mp4 to mkv..."
-    ffmpeg -v quiet \
+    ffmpeg \
 	   -stats \
 	   -i "$1" \
 	   -c copy \
@@ -75,7 +75,11 @@ DIR=$(realpath $1)
 cd $DIR
 
 movie=$(_get movie)
-subs=$(_get subs)
+# subs=$(_find_subs)
+# subs=$(_get subs)
+
+find -maxdepth 2 -name "*.srt"
+exit 1
 
 default="$(basename ${DIR,,})" # lowercase $DIR and extract basename
 default="${default/_/-}"

@@ -1,10 +1,10 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export SSH_AGENT_PID:997
-SETUVAR --export SSH_AUTH_SOCK:/home/george/\x2essh/agent/s\x2evc9A8cWeYn\x2eagent\x2e9IRyjovalw
+SETUVAR --export SSH_AGENT_PID:1160
+SETUVAR --export SSH_AUTH_SOCK:/home/george/\x2essh/agent/s\x2evc9A8cWeYn\x2eagent\x2eEa9p7aS3Fx
 SETUVAR __done_min_cmd_duration:10000
 SETUVAR __done_notification_urgency_level:low
-SETUVAR __fish_initialized:3800
+SETUVAR __fish_initialized:4300
 SETUVAR _fish_abbr_alac_2D_theme:alacritty\x2dcolorscheme\x20\x2dc\x20/home/george/\x2econfig/alacritty/alacritty\x2eyml\x20\x2dC\x20/home/george/\x2econfig/alacritty/themes
 SETUVAR _fish_abbr_aws_2D_login:aws\x2dgate\x20session\x20\x2dp\x20legacy\x2eprod\x20\x27Data\x20Services\x27
 SETUVAR _fish_abbr_aws_2D_sso:aws\x20sso\x20login\x20\x2d\x2dprofile\x20legacy\x2eprod
@@ -28,42 +28,3 @@ SETUVAR _fish_abbr_warp_2D_enable:sudo\x20systemctl\x20enable\x20\x2d\x2dnow\x20
 SETUVAR _fish_abbr_ydl_2D_clips:youtube\x2ddl\x20\x2dwc\x20\x2do\x20/mnt/HDD/MOVIES\x2dSERIES/clips/\x27\x25\x28title\x29s\x2e\x25\x28ext\x29s\x27\x20\x2d\x2dembed\x2dthumbnail\x20\x2df\x20best
 SETUVAR _fish_abbr_ydl_2D_music:youtube\x2ddl\x20\x2dwc\x20\x2do\x20/mnt/HDD/MUSIC/\x27\x25\x28uploader\x29s/\x25\x28title\x29s\x2e\x25\x28ext\x29s\x27\x20\x2d\x2dwrite\x2ddescription\x20\x2d\x2dembed\x2dthumbnail\x20\x2dx\x20\x2d\x2daudio\x2dformat\x20\x27mp3\x27
 SETUVAR _fish_abbr_yt:youtube\x2ddl
-SETUVAR fish_color_autosuggestion:969896
-SETUVAR fish_color_cancel:\x2d\x2dreverse
-SETUVAR fish_color_command:b294bb
-SETUVAR fish_color_comment:f0c674
-SETUVAR fish_color_cwd:green
-SETUVAR fish_color_cwd_root:red
-SETUVAR fish_color_end:b294bb
-SETUVAR fish_color_error:cc6666
-SETUVAR fish_color_escape:00a6b2
-SETUVAR fish_color_history_current:\x2d\x2dbold
-SETUVAR fish_color_host:normal
-SETUVAR fish_color_host_remote:\x1d
-SETUVAR fish_color_keyword:\x1d
-SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
-SETUVAR fish_color_normal:normal
-SETUVAR fish_color_operator:00a6b2
-SETUVAR fish_color_option:\x1d
-SETUVAR fish_color_param:81a2be
-SETUVAR fish_color_quote:b5bd68
-SETUVAR fish_color_redirection:8abeb7
-SETUVAR fish_color_search_match:white\x1e\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_color_status:red
-SETUVAR fish_color_user:brgreen
-SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_key_bindings:fish_vi_key_bindings
-SETUVAR fish_pager_color_background:\x1d
-SETUVAR fish_pager_color_completion:normal
-SETUVAR fish_pager_color_description:B3A06D
-SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
-SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_pager_color_secondary_background:\x1d
-SETUVAR fish_pager_color_secondary_completion:\x1d
-SETUVAR fish_pager_color_secondary_description:\x1d
-SETUVAR fish_pager_color_secondary_prefix:\x1d
-SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_pager_color_selected_completion:\x1d
-SETUVAR fish_pager_color_selected_description:\x1d
-SETUVAR fish_pager_color_selected_prefix:\x1d

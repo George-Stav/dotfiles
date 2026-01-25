@@ -84,16 +84,16 @@ size = 9.5
 # size = 12
 
 [font.bold]
-family = "Jetbrains Mono"
+family = "Monocraft"
 
 [font.bold_italic]
-family = "Jetbrains Mono"
+family = "Monocraft"
 
 [font.italic]
-family = "Jetbrains Mono"
+family = "Monocraft"
 
 [font.normal]
-family = "Jetbrains Mono"
+family = "Monocraft"
 
 [[keyboard.bindings]]
 action = "Paste"
