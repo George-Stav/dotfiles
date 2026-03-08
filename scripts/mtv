@@ -75,11 +75,8 @@ DIR=$(realpath $1)
 cd $DIR
 
 movie=$(_get movie)
-# subs=$(_find_subs)
-# subs=$(_get subs)
-
-find -maxdepth 2 -name "*.srt"
-exit 1
+subs=$(_find_subs)
+subs=$(_get subs)
 
 default="$(basename ${DIR,,})" # lowercase $DIR and extract basename
 default="${default/_/-}"

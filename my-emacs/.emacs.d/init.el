@@ -21,10 +21,8 @@
 ;; font
 ;; (defun myrc/font () "Fira Code Retina-18")
 ;; (defun myrc/font () "JetBrains Mono-18")
-;; Iosevka Nerd Font-15
 (defun myrc/font () "Iosevka Nerd Font-15")
 (add-to-list 'default-frame-alist `(font . ,(myrc/font)))
-(set-face-attribute 'variable-pitch nil :font (myrc/font) :weight 'regular) ;; required for org-mode
 
 ;; remove startup message
 (setq inhibit-startup-message t)
@@ -339,12 +337,14 @@
 
   ;; EVAL & EGLOT
   "e"  '(:ignore t :which-key "eval+eglot")
+  "a"  '(eglot-code-actions :which-key "eglot-code-actions")
   "eb" '(eval-buffer :which-key "eval-buffer")
   "ee" '(eval-expression :which-key "eval-expression")
   "es" '(eval-last-sexp :which-key "eval-last-sexp")
 
   "eg" '(myrc/start-eglot :which-key "start eglot server")
   "ef" '(flymake-mode :whick-key "flymake mode")
+  ;; "ef" '((lambda () (interactive) (myrc/toggle-flymake)) :which-key "flymake mode")
 
   ;; MISC
   "x"  '(evil-buffer-new :which-key "temp buffer")
@@ -425,7 +425,7 @@
 (use-package company
   :init (global-company-mode)
   :custom ((company-selection-wrap-around t)
-	   (company-idle-delay 0.1)
+	   (company-idle-delay nil)
 	   (company-tooltip-offset-display 'lines))
   :bind (:map evil-insert-state-map
 	      ("C-<tab>" . company-complete)))
@@ -481,12 +481,13 @@
 (use-package doom-themes
   ;; :defer t
   :commands (consult-theme))
-;; :init (load-theme 'doom-fairy-floss t))
 (use-package gruber-darker-theme
   :commands (consult-theme))
 
-(setq myrc/theme-light 'doom-flatwhite)
-(setq myrc/theme-dark 'doom-monokai-ristretto)
+;; (setq myrc/theme-light 'doom-flatwhite)
+(setq myrc/theme-light 'doom-nova)
+;; (setq myrc/theme-dark 'doom-monokai-ristretto)
+(setq myrc/theme-dark 'doom-gruvbox)
 
 ;; wombat
 ;; tsdh-light is a good one
@@ -683,11 +684,21 @@
   ;; :custom ((eglot-ignored-server-capabilities '(:documentHighlightProvider
   ;; 						:inlayHintProvider))))
 
+(use-package flymake
+  :config
+  (add-hook 'flymake-mode-hook 'myrc/toggle-flymake-diagnostics-in-buffer))
+
+(custom-set-faces
+  '(flymake-error ((t (:background "light coral"))))
+  '(flymake-note ((t (:background "OliveDrab4"))))
+  '(flymake-warning ((t (:backgound "LightGoldenrod3")))))
+
 (use-package eldoc
   ;; :ensure nil
-  :custom (eldoc-idle-delay 1000000000)
+  :custom (eldoc-idle-delay 100000000)
+  :config (setq eldoc-display-functions '(eldoc-display-in-buffer))
   :bind
-  ;; rebinds command pointed to by keybind: 'K'
+  ;; erbinds command pointed to by keybind: 'K'
   ([remap eldoc-doc-buffer] . eldoc-print-current-symbol-info))
 ;; ============================ ;;
 
