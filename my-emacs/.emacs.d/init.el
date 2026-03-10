@@ -451,17 +451,19 @@
 
 
 ;; ========= DOOM-MODELINE ========= ;;
-(use-package doom-modeline
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-icon t)
-	   (doom-modeline-major-mode-icon t)
-	   (doom-modeline-major-mode-color-icon t)
-	   (doom-modeline-minor-modes nil)
-	   (doom-modeline-height 12)
-	   (doom-modeline-project-detection 'auto)
-	   (doom-modeline-env-python-executable "python")
-	   (doom-modeline-buffer-file-name-style 'truncate-from-project)
-	   (doom-modeline-project-name t)))
+(use-package mood-line
+  :config (mood-line-mode))
+;; (use-package doom-modeline
+;;   :init (doom-modeline-mode 1)
+;;   :custom ((doom-modeline-icon t)
+;; 	   (doom-modeline-major-mode-icon t)
+;; 	   (doom-modeline-major-mode-color-icon t)
+;; 	   (doom-modeline-minor-modes nil)
+;; 	   (doom-modeline-height 12)
+;; 	   (doom-modeline-project-detection 'auto)
+;; 	   (doom-modeline-env-python-executable "python")
+;; 	   (doom-modeline-buffer-file-name-style 'truncate-from-project)
+;; 	   (doom-modeline-project-name t)))
 ;; ============================ ;;
 
 

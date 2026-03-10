@@ -35,6 +35,7 @@ abbr s 'nvim $HOME/scripts/scripts/scratchpad'
 abbr ydl-music "youtube-dl -wc -o /mnt/HDD/MUSIC/'%(uploader)s/%(title)s.%(ext)s' --write-description --embed-thumbnail -x --audio-format 'mp3'"
 abbr ydl-clips "youtube-dl -wc -o /mnt/HDD/MOVIES-SERIES/clips/'%(title)s.%(ext)s' --embed-thumbnail -f best"
 abbr emr "emacsclient -e '(kill-emacs)' && emacs --daemon"
+abbr opencode "sudo --user=opencode /home/opencode/.opencode/bin/opencode"
 
 alias paru="paru --bottomup"
 alias doom="$HOME/.emacs.d/bin/doom"

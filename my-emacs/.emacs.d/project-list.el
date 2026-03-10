@@ -1,7 +1,6 @@
 ;;; -*- lisp-data -*-
-(("/home/george/dotfiles/") ("/home/george/dev/aoc25/")
- ("/home/george/dev/pakas-capital/")
- ("/home/george/dev/rust/spotiver/")
+(("/home/george/dev/rust/spotiver/") ("/home/george/dotfiles/")
+ ("/home/george/dev/aoc25/") ("/home/george/dev/pakas-capital/")
  ("/home/george/Downloads/sqlite/") ("/home/george/notes/")
  ("/home/george/dev/pakas-capital/py-clob-client/")
  ("/home/george/Next/mwa_airflow/")
